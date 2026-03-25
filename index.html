@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Untuk Putri</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&family=Caveat:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/4f3ce16e3e.js" crossorigin="anonymous"></script>
+    <link href="./style.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Loading -->
+    <div class="loading-overlay" id="overlay">
+        <div class="loading-message">Hai kamu!<br>Tunggu dulu ya..</div>
+    </div>
+    
+    <!-- AUDIO - AUTO PLAY FORCE -->
+    <audio src="./seandainya.mp3" id="audio" class="audio-hide" loop preload="auto" autoplay></audio>
+    
+    <!-- PAGE 1 -->
+    <section class="page-section active-page" data-page="1">
+        <div class="wallpaper"><img src="./wpsatu.jpg"></div>
+        <img class="sticker sticker-page1" src="./bunga.gif">
+        <div class="page-content">
+            <h1 class="page-title">PUTRI INI UNTUK AWAK</h1>
+            <p class="page-text flip-text">AKU NAK CAKAP SESUATU</p>
+            <p class="page-text slide-text">bace sampai selesai ye</p>
+        </div>
+    </section>
+    
+    <!-- PAGE 2 -->
+    <section class="page-section" data-page="2">
+        <div class="wallpaper"><img src="./wpdua.jpg"></div>
+        <img class="sticker sticker-page2" src="./pusn.gif">
+        <div class="page-content">
+            <h2 class="page-title">aku buat ini untuk awak je</h2>
+            <p class="page-text slide-right-text">baca ye</p>
+        </div>
+    </section>
+    
+    <!-- PAGE 3 - LONG TEXT -->
+    <section class="page-section" data-page="3">
+        <div class="wallpaper"><img src="./wptiga.jpg"></div>
+        <div class="typing-wrapper">
+            <p id="longTypingText" class="long-page-text">“Putri… aku nak awak tahu, walaupun kita jauh—awak di Malaysia, aku di Indonesia—perasaan aku untuk awak tak pernah berkurang sikit pun. Aku suka awak, serius. Setiap kali fikir pasal awak, rasa macam ada orang yang paling istimewa dalam hidup aku, yang buat aku rasa tenang walaupun dunia ni kadang gila. Aku tahu jarak ni jauh, tapi aku nak awak rasa selamat, dihargai, dan dijaga oleh aku, walaupun kita tak selalu dekat. Aku sentiasa doakan awak bahagia, kuat, dan tersenyum setiap hari. Bila awak rasa penat atau sunyi, bayangkan aku ada dekat awak, selalu sokong awak, nak awak rasa selesa dan aman walaupun jauh. Perasaan aku tulus—tak pernah berubah, takkan hilang, dan aku sanggup tunggu sampai bila-bila, cuma nak awak rasa bahagia dan tenang dengan aku walau jarak memisahkan kita.”</p>
+        </div>
+    </section>
+    
+    <!-- PAGE 4 -->
+    <section class="page-section" data-page="4">
+        <div class="wallpaper"><img src="./wpempat.jpg"></div>
+        <img class="sticker sticker-page4" src="./bunga.gif">
+        <div class="page-content page4-content">
+            <h2 class="page-title page4-title">MAUKAH KAMU</h2>
+            <p class="page-text bold-text slide-right-text page4-text">aku suka awak tapi mungkin kita baru kenal jadi kalo awak taknak jadi pacar boleh kita coba sahabat</p>
+            <div class="choice-buttons">
+                <button class="choice-btn no-choice" onclick="selectAnswer('no')">taknak 😝</button>
+                <button class="choice-btn yes-choice" onclick="selectAnswer('yes')">mau 🥰</button>
+            </div>
+        </div>
+    </section>
+    
+    <!-- PAGE 5 -->
+    <section class="page-section final-section" id="finalScreen">
+        <div class="wallpaper"><img src="./wplima.jpg"></div>
+        <img class="sticker final-sticker1" src="./g5.gif">
+        <img class="sticker final-sticker2" src="./emawh.gif" style="display:none;">
+        <div class="page-content final-content">
+            <h1 id="finalPageTitle" class="final-title"></h1>
+            <p id="finalPageText" class="final-text"></p>
+            <a href="https://wa.me/6285646466151" class="whatsapp-link" target="_blank">💕 Balas di WA</a>
+        </div>
+    </section>
+    
+    <!-- NEXT BUTTON -->
+    <button class="next-button" id="nextButton">
+        <i class="fas fa-arrow-down"></i>
+    </button>
+</body>
+
+<script>
+    let currentPageNum = 1;
+    let maxPages = 4;
+    let typingSpeed = 0;
+    let isTypingNow = false;
+    let audioPlayed = false;
+    
+    const audioPlayer = document.getElementById('audio');
+    const overlayLoading = document.getElementById('overlay');
+    
+    const answers = {
+        no: { title: "yahhh 🥲", text: "makasih yaa udah mau hargai aku 🥰" },
+        yes: { title: "YEYYYYYYY 🥳🥳", text: "maksih Yee putrii udah mauuu 🥰🥳" }
+    };
+    
+    // SUPER FORCE AUTO PLAY - 100% JADI
+    document.addEventListener('DOMContentLoaded', function() {
+        forceAudioPlay();
+    });
+    
+    window.addEventListener('load', function() {
+        setTimeout(startApp, 3000);
+        heartRain();
+    });
+    
+    // FORCE AUDIO PLAY MULTI METHOD
+    function forceAudioPlay() {
+        // Method 1: Direct play
+        audioPlayer.volume = 0.7;
+        audioPlayer.play().catch(() => {});
+        
+        // Method 2: User gesture fallback
+        const playOnInteract = () => {
+            audioPlayer.play().then(() => {
+                audioPlayed = true;
+                document.removeEventListener('click', playOnInteract);
+                document.removeEventListener('touchstart', playOnInteract);
+                document.removeEventListener('keydown', playOnInteract);
+            }).catch(() => {});
+        };
+        
+        document.addEventListener('click', playOnInteract, { once: true });
+        document.addEventListener('touchstart', playOnInteract, { once: true });
+        document.addEventListener('keydown', playOnInteract, { once: true });
+        
+        // Method 3: Multiple retry
+        let retryCount = 0;
+        const retryAudio = () => {
+            if (retryCount < 5 && !audioPlayed) {
+                retryCount++;
+                setTimeout(() => {
+                    audioPlayer.play().catch(() => {});
+                    retryAudio();
+                }, 1000);
+            }
+        };
+        retryAudio();
+    }
+    
+    function startApp() {
+        overlayLoading.style.opacity = '0';
+        setTimeout(() => {
+            overlayLoading.style.display = 'none';
+            document.getElementById('nextButton').classList.add('button-show');
+        }, 500);
+    }
+    
+    function goNextPage() {
+        if (currentPageNum < maxPages && !isTypingNow) {
+            document.querySelector('.active-page').classList.remove('active-page');
+            currentPageNum++;
+            document.querySelector(`[data-page="${currentPageNum}"]`).classList.add('active-page');
+            
+            if (currentPageNum === 3) {
+                startLongTyping();
+            }
+            
+            if (currentPageNum === 4) {
+                document.getElementById('nextButton').style.display = 'none';
+            }
+        }
+    }
+    
+    // LONG TEXT TYPING
+    function startLongTyping() {
+        isTypingNow = true;
+        const fullMessage = document.getElementById('longTypingText').textContent;
+        document.getElementById('longTypingText').textContent = '';
+        typingSpeed = 0;
+        
+        function addLetter() {
+            if (typingSpeed < fullMessage.length) {
+                document.getElementById('longTypingText').textContent += fullMessage[typingSpeed];
+                typingSpeed++;
+                setTimeout(addLetter, 40);
+            } else {
+                isTypingNow = false;
+                setTimeout(() => {
+                    document.getElementById('nextButton').classList.add('button-show');
+                }, 1200);
+            }
+        }
+        addLetter();
+    }
+    
+    // CHOICE
+    function selectAnswer(answer) {
+        document.querySelectorAll('.page-section').forEach(page => {
+            page.style.display = 'none';
+        });
+        
+        const finalTitle = document.getElementById('finalPageTitle');
+        const finalText = document.getElementById('finalPageText');
+        const finalSticker2 = document.querySelector('.final-sticker2');
+        
+        finalTitle.textContent = answers[answer].title;
+        finalText.textContent = answers[answer].text;
+        
+        if (answer === 'yes') {
+            finalSticker2.style.display = 'block';
+        }
+        
+        document.getElementById('finalScreen').style.display = 'flex';
+        document.getElementById('finalScreen').classList.add('active-page');
+        audioPlayer.pause();
+    }
+    
+    // EVENT LISTENERS
+    document.getElementById('nextButton').addEventListener('click', goNextPage);
+    
+    // SWIPE GESTURE
+    let touchStartY = 0;
+    document.addEventListener('touchstart', e => {
+        touchStartY = e.touches[0].clientY;
+    });
+    document.addEventListener('touchend', e => {
+        const touchEndY = e.changedTouches[0].clientY;
+        if (touchStartY - touchEndY > 60 && currentPageNum < maxPages && !isTypingNow) {
+            goNextPage();
+        }
+    });
+    
+    // HEART RAIN
+    function heartRain() {
+        setInterval(() => {
+            const heart = document.createElement('div');
+            heart.className = 'falling-heart';
+            heart.innerHTML = ['💖', '💕', '💗', '❤️'][Math.floor(Math.random() * 4)];
+            heart.style.left = Math.random() * 95 + 'vw';
+            heart.style.animationDuration = (Math.random() * 2 + 3) + 's';
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 5000);
+        }, 500);
+    }
+</script>
+</html>
