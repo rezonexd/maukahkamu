@@ -10,9 +10,9 @@
 </head>
 <body>
 
-<!-- LOADING -->
+<!-- Loading -->
 <div class="loading-overlay" id="overlay">
-    <div class="loading-message">Hai kamu 😊<br>Tunggu sebentar ya...</div>
+    <div class="loading-message">Hai kamu!<br>Tunggu sebentar ya..</div>
 </div>
 
 <!-- AUDIO -->
@@ -23,9 +23,9 @@
     <div class="wallpaper"><img src="./wpsatu.jpg"></div>
     <img class="sticker sticker-page1" src="./bunga.gif">
     <div class="page-content">
-        <h1 class="page-title">USER, INI BUAT KAMU</h1>
-        <p class="page-text flip-text">Aku mau ngomong sesuatu...</p>
-        <p class="page-text slide-text">Baca sampai selesai ya 😊</p>
+        <h1 class="page-title">USER INI UNTUK KAMU</h1>
+        <p class="page-text flip-text">AKU MAU NGOMONG SESUATU</p>
+        <p class="page-text slide-text">baca sampai selesai ya</p>
     </div>
 </section>
 
@@ -34,8 +34,8 @@
     <div class="wallpaper"><img src="./wpdua.jpg"></div>
     <img class="sticker sticker-page2" src="./pusn.gif">
     <div class="page-content">
-        <h2 class="page-title">Aku bikin ini khusus buat kamu</h2>
-        <p class="page-text slide-right-text">Dibaca ya...</p>
+        <h2 class="page-title">aku buat ini khusus untuk kamu</h2>
+        <p class="page-text slide-right-text">dibaca ya</p>
     </div>
 </section>
 
@@ -44,15 +44,7 @@
     <div class="wallpaper"><img src="./wptiga.jpg"></div>
     <div class="typing-wrapper">
         <p id="longTypingText" class="long-page-text">
-“User… aku cuma mau kamu tahu, walaupun kita gak selalu dekat, perasaan aku ke kamu itu beneran tulus.
-
-Setiap kali aku mikirin kamu, rasanya beda… kayak ada seseorang yang spesial dalam hidup aku. Kamu bikin aku ngerasa tenang, bahkan di saat hari lagi berat.
-
-Aku mungkin gak selalu ada di samping kamu, tapi aku selalu berusaha ada buat kamu, walaupun cuma lewat doa atau perhatian kecil.
-
-Kalau suatu hari kamu capek, sedih, atau ngerasa sendirian… inget ya, ada aku yang selalu peduli sama kamu.
-
-Aku gak minta banyak, aku cuma pengen kamu bahagia… dan kalau bisa, bahagia itu bareng aku.”
+User... aku mau kamu tahu, walaupun kita gak selalu dekat, perasaan aku ke kamu itu tulus banget. Aku suka kamu, serius. Setiap kali aku mikirin kamu, rasanya beda, kayak ada orang spesial dalam hidup aku yang bikin aku tenang walaupun hari lagi berat. Aku tahu kita gak selalu dekat, tapi aku pengen kamu ngerasa dihargai, dijaga, dan gak sendirian. Aku selalu doain kamu biar bahagia dan kuat setiap hari. Kalau kamu lagi capek atau sedih, inget ya ada aku yang peduli sama kamu. Perasaan aku ini tulus, gak berubah, dan aku cuma pengen kamu bahagia.
         </p>
     </div>
 </section>
@@ -62,14 +54,14 @@ Aku gak minta banyak, aku cuma pengen kamu bahagia… dan kalau bisa, bahagia it
     <div class="wallpaper"><img src="./wpempat.jpg"></div>
     <img class="sticker sticker-page4" src="./bunga.gif">
     <div class="page-content page4-content">
-        <h2 class="page-title page4-title">KAMU MAU GAK?</h2>
+        <h2 class="page-title page4-title">KAMU MAU GAK</h2>
         <p class="page-text bold-text slide-right-text page4-text">
-Aku suka kamu... tapi kalau kamu belum siap, kita bisa mulai dari teman dulu 😊
+aku suka kamu, tapi kalau kamu belum siap jadi pacar, kita bisa mulai dari teman dulu
         </p>
 
         <div class="choice-buttons">
-            <button class="choice-btn no-choice" onclick="selectAnswer('no')">Gak dulu 😝</button>
-            <button class="choice-btn yes-choice" onclick="selectAnswer('yes')">Mau 🥰</button>
+            <button class="choice-btn no-choice" onclick="selectAnswer('no')">gak dulu 😝</button>
+            <button class="choice-btn yes-choice" onclick="selectAnswer('yes')">mau 🥰</button>
         </div>
     </div>
 </section>
@@ -82,36 +74,70 @@ Aku suka kamu... tapi kalau kamu belum siap, kita bisa mulai dari teman dulu �
     <div class="page-content final-content">
         <h1 id="finalPageTitle" class="final-title"></h1>
         <p id="finalPageText" class="final-text"></p>
-        <a href="https://wa.me/6285768090238" class="whatsapp-link" target="_blank">
-            💕 Balas di WhatsApp
-        </a>
+        <a href="https://wa.me/6285646466151" class="whatsapp-link" target="_blank">💕 Balas di WA</a>
     </div>
 </section>
 
-<!-- BUTTON -->
+<!-- NEXT BUTTON -->
 <button class="next-button" id="nextButton">
     <i class="fas fa-arrow-down"></i>
 </button>
+
+</body>
 
 <script>
 let currentPageNum = 1;
 let maxPages = 4;
 let typingSpeed = 0;
 let isTypingNow = false;
+let audioPlayed = false;
 
 const audioPlayer = document.getElementById('audio');
 const overlayLoading = document.getElementById('overlay');
 
 const answers = {
-    no: {
-        title: "Yahh 😢",
-        text: "Gapapa kok, makasih ya udah jujur 😊"
-    },
-    yes: {
-        title: "YEAYYY 🥳🥳",
-        text: "Makasih yaa udah mau nerima aku 🥰"
-    }
+    no: { title: "yahh 😢", text: "gapapa kok, makasih ya udah jujur" },
+    yes: { title: "YEAYYY 🥳", text: "makasih yaa udah mau nerima aku 🥰" }
 };
+
+document.addEventListener('DOMContentLoaded', function() {
+    forceAudioPlay();
+});
+
+window.addEventListener('load', function() {
+    setTimeout(startApp, 3000);
+    heartRain();
+});
+
+function forceAudioPlay() {
+    audioPlayer.volume = 0.7;
+    audioPlayer.play().catch(() => {});
+    
+    const playOnInteract = () => {
+        audioPlayer.play().then(() => {
+            audioPlayed = true;
+            document.removeEventListener('click', playOnInteract);
+            document.removeEventListener('touchstart', playOnInteract);
+            document.removeEventListener('keydown', playOnInteract);
+        }).catch(() => {});
+    };
+    
+    document.addEventListener('click', playOnInteract, { once: true });
+    document.addEventListener('touchstart', playOnInteract, { once: true });
+    document.addEventListener('keydown', playOnInteract, { once: true });
+    
+    let retryCount = 0;
+    const retryAudio = () => {
+        if (retryCount < 5 && !audioPlayed) {
+            retryCount++;
+            setTimeout(() => {
+                audioPlayer.play().catch(() => {});
+                retryAudio();
+            }, 1000);
+        }
+    };
+    retryAudio();
+}
 
 function startApp() {
     overlayLoading.style.opacity = '0';
@@ -121,60 +147,87 @@ function startApp() {
     }, 500);
 }
 
-window.addEventListener('load', function() {
-    setTimeout(startApp, 2000);
-});
-
 function goNextPage() {
     if (currentPageNum < maxPages && !isTypingNow) {
         document.querySelector('.active-page').classList.remove('active-page');
         currentPageNum++;
         document.querySelector(`[data-page="${currentPageNum}"]`).classList.add('active-page');
-
+        
         if (currentPageNum === 3) {
-            startTyping();
+            startLongTyping();
         }
-
+        
         if (currentPageNum === 4) {
             document.getElementById('nextButton').style.display = 'none';
         }
     }
 }
 
-function startTyping() {
+function startLongTyping() {
     isTypingNow = true;
-    const el = document.getElementById('longTypingText');
-    const text = el.textContent;
-    el.textContent = '';
-    let i = 0;
-
-    function type() {
-        if (i < text.length) {
-            el.textContent += text[i];
-            i++;
-            setTimeout(type, 40);
+    const fullMessage = document.getElementById('longTypingText').textContent;
+    document.getElementById('longTypingText').textContent = '';
+    typingSpeed = 0;
+    
+    function addLetter() {
+        if (typingSpeed < fullMessage.length) {
+            document.getElementById('longTypingText').textContent += fullMessage[typingSpeed];
+            typingSpeed++;
+            setTimeout(addLetter, 40);
         } else {
             isTypingNow = false;
+            setTimeout(() => {
+                document.getElementById('nextButton').classList.add('button-show');
+            }, 1200);
         }
     }
-    type();
+    addLetter();
 }
 
 function selectAnswer(answer) {
-    document.querySelectorAll('.page-section').forEach(p => p.style.display = 'none');
-
-    document.getElementById('finalPageTitle').textContent = answers[answer].title;
-    document.getElementById('finalPageText').textContent = answers[answer].text;
-
+    document.querySelectorAll('.page-section').forEach(page => {
+        page.style.display = 'none';
+    });
+    
+    const finalTitle = document.getElementById('finalPageTitle');
+    const finalText = document.getElementById('finalPageText');
+    const finalSticker2 = document.querySelector('.final-sticker2');
+    
+    finalTitle.textContent = answers[answer].title;
+    finalText.textContent = answers[answer].text;
+    
     if (answer === 'yes') {
-        document.querySelector('.final-sticker2').style.display = 'block';
+        finalSticker2.style.display = 'block';
     }
-
+    
     document.getElementById('finalScreen').style.display = 'flex';
+    document.getElementById('finalScreen').classList.add('active-page');
+    audioPlayer.pause();
 }
 
 document.getElementById('nextButton').addEventListener('click', goNextPage);
-</script>
 
-</body>
-        </html>
+let touchStartY = 0;
+document.addEventListener('touchstart', e => {
+    touchStartY = e.touches[0].clientY;
+});
+document.addEventListener('touchend', e => {
+    const touchEndY = e.changedTouches[0].clientY;
+    if (touchStartY - touchEndY > 60 && currentPageNum < maxPages && !isTypingNow) {
+        goNextPage();
+    }
+});
+
+function heartRain() {
+    setInterval(() => {
+        const heart = document.createElement('div');
+        heart.className = 'falling-heart';
+        heart.innerHTML = ['💖','💕','💗','❤️'][Math.floor(Math.random()*4)];
+        heart.style.left = Math.random()*95 + 'vw';
+        heart.style.animationDuration = (Math.random()*2+3)+'s';
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 5000);
+    }, 500);
+}
+</script>
+    </html>
